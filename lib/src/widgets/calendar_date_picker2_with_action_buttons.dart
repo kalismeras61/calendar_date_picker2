@@ -95,7 +95,7 @@ class _CalendarDatePicker2WithActionButtonsState
             const Text(
               "Time",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
