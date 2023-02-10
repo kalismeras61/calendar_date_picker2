@@ -11,7 +11,7 @@ Future<List<DateTime?>?> showCalendarDatePicker2Dialog({
   BorderRadius? borderRadius,
   bool useRootNavigator = true,
   bool barrierDismissible = true,
-  Color? barrierColor = Colors.black54,
+  Color? barrierColor = Colors.black12,
   bool useSafeArea = true,
   Color? dialogBackgroundColor,
   RouteSettings? routeSettings,
@@ -26,7 +26,7 @@ Future<List<DateTime?>?> showCalendarDatePicker2Dialog({
       color: dialogBackgroundColor ?? Theme.of(context).canvasColor,
       borderRadius: borderRadius ?? BorderRadius.circular(10),
       child: SizedBox(
-        width: dialogSize.width,
+        width: double.infinity,
         height: max(dialogSize.height, 410),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

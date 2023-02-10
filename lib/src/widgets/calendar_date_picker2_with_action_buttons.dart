@@ -1,4 +1,5 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CalendarDatePicker2WithActionButtons extends StatefulWidget {
@@ -87,74 +88,91 @@ class _CalendarDatePicker2WithActionButtonsState
             onDisplayedMonthChanged: widget.onDisplayedMonthChanged,
           ),
         ),
-        SizedBox(height: widget.config.gapBetweenCalendarAndButtons ?? 10),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _buildCancelButton(Theme.of(context).colorScheme),
-            if ((widget.config.gapBetweenCalendarAndButtons ?? 0) > 0)
-              SizedBox(width: widget.config.gapBetweenCalendarAndButtons),
-            _buildOkButton(Theme.of(context).colorScheme),
+            const SizedBox(width: 22),
+            const Text(
+              "Time",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              height: 50,
+              width: 130,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.time,
+                use24hFormat: true,
+                initialDateTime: DateTime.now(),
+                onDateTimeChanged: (DateTime newDateTime) {
+                  // Do something
+                },
+              ),
+            ),
+            const SizedBox(width: 8),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildCancelButton(ColorScheme colorScheme) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(5),
-      onTap: () => setState(() {
-        _editCache = _values;
-        widget.onCancelTapped?.call();
-        if ((widget.config.openedFromDialog ?? false) &&
-            (widget.config.closeDialogOnCancelTapped ?? true)) {
-          Navigator.pop(context);
-        }
-      }),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: widget.config.cancelButton ??
-            Text(
-              'CANCEL',
-              style: widget.config.cancelButtonTextStyle ??
-                  TextStyle(
-                    color: widget.config.selectedDayHighlightColor ??
-                        colorScheme.primary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                  ),
-            ),
-      ),
-    );
-  }
+  // Widget _buildCancelButton(ColorScheme colorScheme) {
+  //   return InkWell(
+  //     borderRadius: BorderRadius.circular(5),
+  //     onTap: () => setState(() {
+  //       _editCache = _values;
+  //       widget.onCancelTapped?.call();
+  //       if ((widget.config.openedFromDialog ?? false) &&
+  //           (widget.config.closeDialogOnCancelTapped ?? true)) {
+  //         Navigator.pop(context);
+  //       }
+  //     }),
+  //     child: Container(
+  //       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+  //       child: widget.config.cancelButton ??
+  //           Text(
+  //             'CANCEL',
+  //             style: widget.config.cancelButtonTextStyle ??
+  //                 TextStyle(
+  //                   color: widget.config.selectedDayHighlightColor ??
+  //                       colorScheme.primary,
+  //                   fontWeight: FontWeight.w700,
+  //                   fontSize: 14,
+  //                 ),
+  //           ),
+  //     ),
+  //   );
+  // }
 
-  Widget _buildOkButton(ColorScheme colorScheme) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(5),
-      onTap: () => setState(() {
-        _values = _editCache;
-        widget.onValueChanged?.call(_values);
-        widget.onOkTapped?.call();
-        if ((widget.config.openedFromDialog ?? false) &&
-            (widget.config.closeDialogOnOkTapped ?? true)) {
-          Navigator.pop(context, _values);
-        }
-      }),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: widget.config.okButton ??
-            Text(
-              'OK',
-              style: widget.config.okButtonTextStyle ??
-                  TextStyle(
-                    color: widget.config.selectedDayHighlightColor ??
-                        colorScheme.primary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                  ),
-            ),
-      ),
-    );
-  }
+  // Widget _buildOkButton(ColorScheme colorScheme) {
+  //   return InkWell(
+  //     borderRadius: BorderRadius.circular(5),
+  //     onTap: () => setState(() {
+  //       _values = _editCache;
+  //       widget.onValueChanged?.call(_values);
+  //       widget.onOkTapped?.call();
+  //       if ((widget.config.openedFromDialog ?? false) &&
+  //           (widget.config.closeDialogOnOkTapped ?? true)) {
+  //         Navigator.pop(context, _values);
+  //       }
+  //     }),
+  //     child: Container(
+  //       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+  //       child: widget.config.okButton ??
+  //           Text(
+  //             'OK',
+  //             style: widget.config.okButtonTextStyle ??
+  //                 TextStyle(
+  //                   color: widget.config.selectedDayHighlightColor ??
+  //                       colorScheme.primary,
+  //                   fontWeight: FontWeight.w700,
+  //                   fontSize: 14,
+  //                 ),
+  //           ),
+  //     ),
+  //   );
+  // }
 }
