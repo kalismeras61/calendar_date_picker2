@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 
 const Duration _monthScrollDuration = Duration(milliseconds: 200);
 
-const double _dayPickerRowHeight = 42.0;
+const double _dayPickerRowHeight = 36.0;
 const int _maxDayPickerRowCount = 6; // A 31 day month that starts on Saturday.
 // One extra row for the day-of-week header.
 const double _maxDayPickerHeight =

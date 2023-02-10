@@ -1,5 +1,4 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CalendarDatePicker2WithActionButtons extends StatefulWidget {
@@ -87,33 +86,6 @@ class _CalendarDatePicker2WithActionButtonsState
             onValueChanged: (values) => _editCache = values,
             onDisplayedMonthChanged: widget.onDisplayedMonthChanged,
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(width: 22),
-            const Text(
-              "Time",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const Spacer(),
-            SizedBox(
-              height: 50,
-              width: 130,
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.time,
-                use24hFormat: true,
-                initialDateTime: DateTime.now(),
-                onDateTimeChanged: (DateTime newDateTime) {
-                  // Do something
-                },
-              ),
-            ),
-            const SizedBox(width: 8),
-          ],
         ),
       ],
     );
